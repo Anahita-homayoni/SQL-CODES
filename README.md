@@ -16,5 +16,19 @@ specifying a PRIMARY KEY: CREATE TABLE unique_sale (sale_id INT PRIMARY KEY,name
 To only get the age column:SELECT age FROM sales;
 Use where to specify a condition: SELECT * FROM cats WHERE age = 4;
 Use 'AS' to alias a column in your results (it doesn't actually change the name of the column in the table):SELECT sales_id AS id, name FROM cats;
+Updating Data Change long hair to shorthair:UPDATE sales SET breed='Shorthair' WHERE breed='Tabby';
+Delete all sales with name of 'Egg':DELETE FROM sales WHERE name='Egg';    
+avoide duplicate: SELECT DISTINCT author_lname FROM books;
+Combine two columns:SELECT DISTINCT CONCAT(author_fname,' ', author_lname) FROM books;
+SELECT * FROM books ORDER BY author_lname DESC;
+SELECT * FROM books ORDER BY released_year;
+SELECT book_id, author_fname, author_lname, pages FROM books ORDER BY author_lname, author_fname;
+SELECT book_id, author_fname, author_lname, pages FROM books ORDER BY 2 desc;
+SELECT title FROM books LIMIT 3;
+SELECT * FROM books LIMIT 1;
+SELECT title, released_year FROM books ORDER BY released_year DESC LIMIT 5;
+SELECT title, released_year FROM books ORDER BY released_year DESC LIMIT 1,3;
+SELECT title, author_fname, author_lname, pages FROM booksWHERE author_fname LIKE '%da%';
+SELECT * FROM books WHERE author_fname LIKE '____';
+SELECT * FROM books WHERE author_fname LIKE '_a_';
 
-       
