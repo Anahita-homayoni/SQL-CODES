@@ -12,3 +12,9 @@ Multiple Insert: INSERT INTO sales (name, age) VALUES   ('Meatball', 5),   ('Tur
 Using NOT NULL:CREATE TABLE cats2 (name VARCHAR(100) NOT NULL,age INT NOT NULL);
 Define a table with a DEFAULT name specified:CREATE TABLE sales3( name VARCHAR(20) DEFAULT 'no name provided', age INT DEFAULT 99);
 Define a table with a DEFAULT name specified:CREATE TABLE cats3  (name VARCHAR(20) DEFAULT 'no name provided',age INT DEFAULT 99);
+specifying a PRIMARY KEY: CREATE TABLE unique_sale (sale_id INT PRIMARY KEY,name VARCHAR(100) NOT NULL,age INT NOT NULL);
+To only get the age column:SELECT age FROM sales;
+Use where to specify a condition: SELECT * FROM cats WHERE age = 4;
+Use 'AS' to alias a column in your results (it doesn't actually change the name of the column in the table):SELECT sales_id AS id, name FROM cats;
+
+       
