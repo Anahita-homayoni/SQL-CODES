@@ -63,3 +63,6 @@ INSERT INTO people (name, birthdate, birthtime, birthdt)VALUES ('Hazel', CURDATE
 SELECT birthdate,DAY(birthdate),DAYOFWEEK(birthdate),DAYOFYEAR(birthdate)FROM people;
 SELECT birthdate,MONTHNAME(birthdate),YEAR(birthdate)FROM people;
 SELECT birthtime,HOUR(birthtime),MINUTE(birthtime)FROM people;
+SELECT birthdate, DATE_FORMAT(birthdate, '%a %b %D') FROM people; 
+SELECT birthdt, DATE_FORMAT(birthdt, '%H:%i') FROM people; 
+SELECT birthdt, DATE_FORMAT(birthdt, 'BORN ON: %r') FROM people;
