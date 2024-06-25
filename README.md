@@ -69,3 +69,5 @@ SELECT birthdt, DATE_FORMAT(birthdt, 'BORN ON: %r') FROM people;
 CREATE TABLE captions (text VARCHAR(150),created_at TIMESTAMP default CURRENT_TIMESTAMP); 
 CREATE TABLE captions2 (text VARCHAR(150),  created_at TIMESTAMP default CURRENT_TIMESTAMP,updated_at TIMESTAMP ON UPDATE CURRENT_TIMESTAMP);
 SELECT * FROM books WHERE released_year != 2017;
+SELECT * FROM books
+WHERE title NOT LIKE '%e%';
