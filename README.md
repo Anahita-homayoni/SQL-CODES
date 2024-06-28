@@ -79,3 +79,6 @@ WHERE released_year > 2010 AND author_lname = 'Eggers';
 SELECT title, author_lname, released_year FROM books WHERE author_lname='Eggers' OR released_year > 2010;
 SELECT title, released_year FROM books WHERE released_year <= 2015 AND released_year >= 2004;
 SELECT * FROM people WHERE birthtime BETWEEN CAST('12:00:00' AS TIME)AND CAST('16:00:00' AS TIME);
+CREATE TABLE contacts (	name VARCHAR(100) NOT NULL,phone VARCHAR(15) NOT NULL UNIQUE);
+CREATE TABLE palindromes (word VARCHAR(100) CHECK(REVERSE(word) = word));
+CREATE TABLE users2 ( username VARCHAR(20) NOT NULL, age INT, CONSTRAINT age_not_negative CHECK (age >= 0));
