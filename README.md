@@ -85,3 +85,7 @@ ALTER TABLE companies DROP COLUMN phone;
 CREATE TABLE users2 ( username VARCHAR(20) NOT NULL, age INT, CONSTRAINT age_not_negative CHECK (age >= 0));
 CREATE TABLE houses ( purchase_price INT NOT NULL, sale_price INT NOT NULL, CONSTRAINT sprice_gt_pprice CHECK(sale_price >= purchase_price));
 ALTER TABLE companies ADD COLUMN employee_count INT NOT NULL DEFAULT 1;
+RENAME TABLE companies to suppliers;
+ALTER TABLE suppliers RENAME TO companies;
+ALTER TABLE companies MODIFY company_name VARCHAR(100) DEFAULT 'unknown';
+ALTER TABLE suppliers CHANGE business biz_name VARCHAR(50);
