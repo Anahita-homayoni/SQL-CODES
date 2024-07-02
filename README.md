@@ -96,3 +96,5 @@ Foreighn key:CREATE TABLE orders (id INT PRIMARY KEY AUTO_INCREMENT,order_date D
 inner join:SELECT * FROM customers JOIN orders ON orders.customer_id = customers.id;
 SELECT first_name, last_name, order_date, amount FROM customers JOIN orders ON orders.customer_id = customers.id;
 INNER JOINS:SELECT first_name, last_name, SUM(amount) AS total FROM customers JOIN orders ON orders.customer_id = customers.id GROUP BY first_name , last_name ORDER BY total;
+SELECT first_name, last_name, order_date, amount FROM customers LEFT JOIN orders ON orders.customer_id = customers.id;
+SELECT order_date, amount, first_name, last_name FROM orders LEFT JOIN customers ON orders.customer_id = customers.id;
