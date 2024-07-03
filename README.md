@@ -98,3 +98,9 @@ SELECT first_name, last_name, order_date, amount FROM customers JOIN orders ON o
 INNER JOINS:SELECT first_name, last_name, SUM(amount) AS total FROM customers JOIN orders ON orders.customer_id = customers.id GROUP BY first_name , last_name ORDER BY total;
 SELECT first_name, last_name, order_date, amount FROM customers LEFT JOIN orders ON orders.customer_id = customers.id;
 SELECT order_date, amount, first_name, last_name FROM orders LEFT JOIN customers ON orders.customer_id = customers.id;
+SELECT first_name,last_name, IFNULL(SUM(amount), 0) AS money_spent FROM customers LEFT JOIN orders ON customers.id = orders.customer_id GROUP BY first_name , last_name;
+CREATE TABLE customers (id INT PRIMARY KEY AUTO_INCREMENT,first_name VARCHAR(50),last_name VARCHAR(50), email VARCHAR(50));
+CREATE TABLE orders (id INT PRIMARY KEY AUTO_INCREMENT,order_date DATE, amount DECIMAL(8 , 2 ), customer_id INT,FOREIGN KEY (customer_id) REFERENCES customers (id) ON DELETE CASCADE);
+CREATE TABLE reviewers (id INT PRIMARY KEY AUTO_INCREMENT, first_name VARCHAR(50) NOT NULL, last_name VARCHAR(50) NOT NULL);
+CREATE TABLE series (id INT PRIMARY KEY AUTO_INCREMENT,title VARCHAR(100),released_year YEAR,genre VARCHAR(100));
+CREATE TABLE reviews (id INT PRIMARY KEY AUTO_INCREMENT,rating DECIMAL(2 , 1 ),series_id INT,reviewer_id INT,FOREIGN KEY (series_id)REFERENCES series (id),FOREIGN KEY (reviewer_id)        REFERENCES reviewers (id));
