@@ -104,3 +104,8 @@ CREATE TABLE orders (id INT PRIMARY KEY AUTO_INCREMENT,order_date DATE, amount D
 CREATE TABLE reviewers (id INT PRIMARY KEY AUTO_INCREMENT, first_name VARCHAR(50) NOT NULL, last_name VARCHAR(50) NOT NULL);
 CREATE TABLE series (id INT PRIMARY KEY AUTO_INCREMENT,title VARCHAR(100),released_year YEAR,genre VARCHAR(100));
 CREATE TABLE reviews (id INT PRIMARY KEY AUTO_INCREMENT,rating DECIMAL(2 , 1 ),series_id INT,reviewer_id INT,FOREIGN KEY (series_id)REFERENCES series (id),FOREIGN KEY (reviewer_id)        REFERENCES reviewers (id));
+SELECT title AS unreviewed_series FROM series LEFT JOIN reviews ON series.id = reviews.series_id WHERE rating IS NULL;
+SELECT title AS unreviewed_series FROM reviews RIGHT JOIN series ON series.id = reviews.series_id WHERE rating IS NULL;
+SELECT first_name, last_name, rating FROM reviewers JOIN reviews ON reviews.reviewer_id = reviewers.id;
+SELECT title, ROUND(AVG(rating), 2) AS avg_rating FROM series JOIN reviews ON series.id = reviews.series_id GROUP BY title ORDER BY avg_rating;
+SELECT title, rating FROM series JOIN reviews ON series.id = reviews.series_id;
