@@ -109,3 +109,4 @@ SELECT title AS unreviewed_series FROM reviews RIGHT JOIN series ON series.id = 
 SELECT first_name, last_name, rating FROM reviewers JOIN reviews ON reviews.reviewer_id = reviewers.id;
 SELECT title, ROUND(AVG(rating), 2) AS avg_rating FROM series JOIN reviews ON series.id = reviews.series_id GROUP BY title ORDER BY avg_rating;
 SELECT title, rating FROM series JOIN reviews ON series.id = reviews.series_id;
+SELECT genre, ROUND(AVG(rating), 2) AS avg_rating FROM series JOIN reviews ON series.id = reviews.series_id GROUP BY genre;
