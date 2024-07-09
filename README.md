@@ -114,4 +114,7 @@ USING CASE :SELECT first_name,last_name,COUNT(rating) AS count,IFNULL(MIN(rating
 USING IF :SELECT first_name, last_name, COUNT(rating) AS count, IFNULL(MIN(rating), 0) AS min, IFNULL(MAX(rating), 0) AS max, ROUND(IFNULL(AVG(rating), 0), 2) AS average,IF(COUNT(rating) > 0,
         'ACTIVE', 'INACTIVE') AS status FROM reviewers LEFT JOIN reviews ON reviewers.id = reviews.reviewer_id GROUP BY first_name , last_name;
 SELECT  title,  rating, CONCAT(first_name, ' ', last_name) AS reviewer FROM reviews INNER JOIN series ON reviews.series_id = series.id INNER JOIN reviewers ON reviews.reviewer_id = reviewers.id;
- 
+ CREATE OR REPLACE VIEW ordered_series AS SELECT * FROM series ORDER BY released_year DESC;
+CREATE VIEW ordered_series AS SELECT * FROM series ORDER BY released_year;
+ALTER VIEW ordered_series AS SELECT * FROM series ORDER BY released_year;
+having:SELECT title, AVG(rating),COUNT(rating) AS review_count FROM full_reviews GROUP BY title HAVING COUNT(rating) > 1;
