@@ -118,3 +118,6 @@ SELECT  title,  rating, CONCAT(first_name, ' ', last_name) AS reviewer FROM revi
 CREATE VIEW ordered_series AS SELECT * FROM series ORDER BY released_year;
 ALTER VIEW ordered_series AS SELECT * FROM series ORDER BY released_year;
 having:SELECT title, AVG(rating),COUNT(rating) AS review_count FROM full_reviews GROUP BY title HAVING COUNT(rating) > 1;
+OVER:SELECT emp_no, department, salary, AVG(salary) OVER(PARTITION BY department) AS dept_avg,AVG(salary) OVER() AS company_avg FROM employees;
+SELECT emp_no,department, salary,MIN(salary) OVER(), MAX(salary) OVER()FROM employees;
+    
