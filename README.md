@@ -120,4 +120,7 @@ ALTER VIEW ordered_series AS SELECT * FROM series ORDER BY released_year;
 having:SELECT title, AVG(rating),COUNT(rating) AS review_count FROM full_reviews GROUP BY title HAVING COUNT(rating) > 1;
 OVER:SELECT emp_no, department, salary, AVG(salary) OVER(PARTITION BY department) AS dept_avg,AVG(salary) OVER() AS company_avg FROM employees;
 SELECT emp_no,department, salary,MIN(salary) OVER(), MAX(salary) OVER()FROM employees;
-    
+ranki:SELECT  emp_no, department, salary,ROW_NUMBER() OVER(PARTITION BY department ORDER BY SALARY DESC) as dept_row_number,RANK() OVER(PARTITION BY department ORDER BY SALARY DESC) as dept_salary_rank, RANK() OVER(ORDER BY salary DESC) as overall_rank,DENSE_RANK() OVER(ORDER BY salary DESC) as overall_dense_rank, ROW_NUMBER() OVER(ORDER BY salary DESC) as overall_num FROM employees ORDER BY overall_rank;
+ NTILE:SELECT emp_no, department, salary,NTILE(4) OVER(PARTITION BY department ORDER BY salary DESC) AS dept_salary_quartile,NTILE(4) OVER(ORDER BY salary DESC) AS salary_quartile FROM employees;   
+FIRST_VALUE:SELECT emp_no, department, salary,FIRST_VALUE(emp_no) OVER(PARTITION BY department ORDER BY salary DESC) as highest_paid_dept, FIRST_VALUE(emp_no) OVER(ORDER BY salary DESC) as highest_paid_overall FROM employees;
+LAG: SELECT emp_no, department, salary,salary - LAG(salary) OVER(ORDER BY salary DESC) as salary_diff FROM employees;
