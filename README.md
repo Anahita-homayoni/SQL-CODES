@@ -124,3 +124,7 @@ ranki:SELECT  emp_no, department, salary,ROW_NUMBER() OVER(PARTITION BY departme
  NTILE:SELECT emp_no, department, salary,NTILE(4) OVER(PARTITION BY department ORDER BY salary DESC) AS dept_salary_quartile,NTILE(4) OVER(ORDER BY salary DESC) AS salary_quartile FROM employees;   
 FIRST_VALUE:SELECT emp_no, department, salary,FIRST_VALUE(emp_no) OVER(PARTITION BY department ORDER BY salary DESC) as highest_paid_dept, FIRST_VALUE(emp_no) OVER(ORDER BY salary DESC) as highest_paid_overall FROM employees;
 LAG: SELECT emp_no, department, salary,salary - LAG(salary) OVER(ORDER BY salary DESC) as salary_diff FROM employees;
+CREATE TABLE users (id INTEGER AUTO_INCREMENT PRIMARY KEY,username VARCHAR(255) UNIQUE NOT NULL,created_at TIMESTAMP DEFAULT NOW());
+CREATE TABLE comments (id INTEGER AUTO_INCREMENT PRIMARY KEY,comment_text VARCHAR(255) NOT NULL,photo_id INTEGER NOT NULL,user_id INTEGER NOT NULL,created_at TIMESTAMP DEFAULT NOW(), FOREIGN KEY(photo_id) REFERENCES photos(id), FOREIGN KEY(user_id) REFERENCES users(id));
+CREATE TABLE likes (user_id INTEGER NOT NULL,photo_id INTEGER NOT NULL,created_at TIMESTAMP DEFAULT NOW(),FOREIGN KEY(user_id) REFERENCES users(id), FOREIGN KEY(photo_id) REFERENCES photos(id),
+    PRIMARY KEY(user_id, photo_id));
